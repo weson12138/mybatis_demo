@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weson.dao.AccountDao">
+    <resultMap id="accountMap" type="account">
+        <id property="id" column="id"/>
+        <id property="uid" column="uid"/>
+        <id property="money" column="money"/>
+        <association property="user" javaType="com.weson.domian4.User"
+                     select="com.weson.dao.UserDao.findAllaa"
+                     column="uid"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="accountMap">
+        select * from account
+    </select>
+
+    <select id="findByUid" resultType="account" parameterType="int">
+        select * from account where uid = #{uid}
+    </select>
+
+</mapper>
